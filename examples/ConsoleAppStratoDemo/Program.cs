@@ -32,6 +32,12 @@ namespace ConsoleAppStratoDemo
 
             var trans = await client.TransactionsGetAsync("e1fd0d4a52b75a694de8b55528ad48e2e2cf7859");
 
+            var stats1 = await client.StatsDifficultyGetAsync();
+
+            var stats2 = await client.StatsTotalTxGetAsync();
+
+            var stor = await client.StoragesGetAsync("eb49ed4bb6ed7f0a73189166fc9486fff65b1630");
+
             int y = 99;
         }
 

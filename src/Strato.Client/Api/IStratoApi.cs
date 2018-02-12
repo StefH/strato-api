@@ -11,10 +11,10 @@ namespace Strato.Client.Api
     public interface IStratoApi
     {
         [Get("account")]
-        Task<IEnumerable<Account>> AccountsGetAsync(string address = null, int? balance = null, int? minbalance = null, int? maxbalance = null, int? nonce = null, int? minnonce = null, int? maxnonce = null);
+        Task<IEnumerable<Account>> AccountsGetAsync(string address = null, long? balance = null, long? minbalance = null, long? maxbalance = null, long? nonce = null, long? minnonce = null, long? maxnonce = null);
 
         [Get("block")]
-        Task<IEnumerable<Block>> BlocksGetAsync(int? number = null, int? minnumber = null, int? maxnumber = null, int? gaslim = null, int? mingaslim = null, int? maxgaslim = null, int? gasused = null, int? mingasused = null, int? maxgasused = null, int? diff = null, int? mindiff = null, int? maxdiff = null, string txaddress = null, string address = null, string coinbase = null, string hash = null);
+        Task<IEnumerable<Block>> BlocksGetAsync(long? number = null, long? minnumber = null, long? maxnumber = null, long? gaslim = null, long? mingaslim = null, long? maxgaslim = null, long? gasused = null, long? mingasused = null, long? maxgasused = null, long? diff = null, long? mindiff = null, long? maxdiff = null, string txaddress = null, string address = null, string coinbase = null, string hash = null);
 
         [Get("block/last/{number}")]
         Task<IEnumerable<Block>> BlocksLastGetAsync([Path] int number);
@@ -27,16 +27,19 @@ namespace Strato.Client.Api
         [Post("solc")]
         Task<SolcResponse> SolcPostAsync(string src);
 
-        // Task<Difficulty> StatsDifficultyGetAsync();
+        [Get("stats/difficulty")]
+        Task<StatsDifficulty> StatsDifficultyGetAsync();
 
-        // Task<TxCount> StatsTotaltxGetAsync();
+        [Get("stats/totaltx")]
+        Task<StatsTxCount> StatsTotalTxGetAsync();
 
-        // Task<IEnumerable<Storage>> StorageGetAsync(string address = null);
+        [Get("storage")]
+        Task<IEnumerable<Storage>> StoragesGetAsync(string address);
 
         [Get("transaction")]
-        Task<IEnumerable<Transaction>> TransactionsGetAsync(string from = null, string to = null, string address = null, int? value = null, int? maxvalue = null, int? minvalue = null, int? gasprice = null, int? maxgasprice = null, int? mingasprice = null, int? gaslimit = null, int? maxgaslimit = null, int? mingaslimit = null, int? blocknumber = null, string hash = null);
+        Task<IEnumerable<Transaction>> TransactionsGetAsync(string from = null, string to = null, string address = null, long? value = null, long? maxvalue = null, long? minvalue = null, long? gasprice = null, long? maxgasprice = null, long? mingasprice = null, long? gaslimit = null, long? maxgaslimit = null, long? mingaslimit = null, long? blocknumber = null, string hash = null);
 
-        // Task<IEnumerable<Transaction>> TransactionLastIntegerGetAsync(int? integer);
+        // Task<IEnumerable<Transaction>> TransactionLastIntegerGetAsync(long? integer);
 
         // Task<IEnumerable<string>> TransactionListPostAsync(IEnumerable<PostTransaction> body);
 

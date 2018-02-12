@@ -1,7 +1,7 @@
 # Strato Client and Strato Bloc Client
 Strato BlockApps C# Client which uses [RestEase](https://github.com/canton7/RestEase) to generate an API interface for:
 
-* [Strato API](http://stratodev.blockapps.net/docs/?url=/strato-api/eth/v1.2/swagger.json) version **1.2** (supported methods 6 from 15)
+* [Strato API](http://stratodev.blockapps.net/docs/?url=/strato-api/eth/v1.2/swagger.json) version **1.2** (supported methods 9 from 15)
 * [Bloc API](http://stratodev.blockapps.net/docs/?url=/bloc/v2.2/swagger.json) version **2.2** (supported methods 6 from 26)
 
 ### NuGet

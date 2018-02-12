@@ -55,6 +55,25 @@ namespace Strato.Client.Models
         public IDictionary<string, XabiSchema> Src { get; set; }
     }
 
+    public class StatsDifficulty
+    {
+        public long Difficulty { get; set; }
+    }
+
+    public class StatsTxCount
+    {
+        public long TransactionCount { get; set; }
+    }
+
+    public class Storage
+    {
+        public string StorageAddress { get; set; }
+
+        public string StorageKey { get; set; }
+
+        public string StorageValue { get; set; }
+    }
+
     public class Transaction
     {
         [JsonConverter(typeof(StringEnumConverter))]
@@ -76,7 +95,7 @@ namespace Strato.Client.Models
 
         public bool? FromBlock { get; set; }
 
-        public int? BlockNumber { get; set; }
+        public long? BlockNumber { get; set; }
 
         public string R { get; set; }
 

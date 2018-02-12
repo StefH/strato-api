@@ -168,63 +168,6 @@ namespace Strato.Client.Models
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.25.0 (Newtonsoft.Json v9.0.0.0)")]
-    public partial class Difficulty
-    {
-        [Newtonsoft.Json.JsonProperty("unDifficulty", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int UnDifficulty { get; set; }
-
-        public string ToJson()
-        {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
-        }
-
-        public static Difficulty FromJson(string data)
-        {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<Difficulty>(data);
-        }
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.25.0 (Newtonsoft.Json v9.0.0.0)")]
-    public partial class TxCount
-    {
-        [Newtonsoft.Json.JsonProperty("unTxCount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int UnTxCount { get; set; }
-
-        public string ToJson()
-        {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
-        }
-
-        public static TxCount FromJson(string data)
-        {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<TxCount>(data);
-        }
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.25.0 (Newtonsoft.Json v9.0.0.0)")]
-    public partial class Storage
-    {
-        [Newtonsoft.Json.JsonProperty("storageAddress", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string StorageAddress { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("storageKey", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string StorageKey { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("storageValue", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string StorageValue { get; set; }
-
-        public string ToJson()
-        {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
-        }
-
-        public static Storage FromJson(string data)
-        {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<Storage>(data);
-        }
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.25.0 (Newtonsoft.Json v9.0.0.0)")]
     public partial class SolcResponse
     {
         [Newtonsoft.Json.JsonProperty("solcresponseSrc", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
