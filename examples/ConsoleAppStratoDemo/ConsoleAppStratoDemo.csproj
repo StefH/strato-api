@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\StratoAPI\StratoAPI.csproj" />
-    <ProjectReference Include="..\..\src\StratoBlocAPI\StratoBlocAPI.csproj" />
+    <ProjectReference Include="..\..\src\Strato.Bloc.Client\Strato.Bloc.Client.csproj" />
+    <ProjectReference Include="..\..\src\Strato.Client\Strato.Client.csproj" />
   </ItemGroup>
 
 </Project>

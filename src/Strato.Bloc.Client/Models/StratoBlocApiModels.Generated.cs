@@ -4,7 +4,7 @@
 // </auto-generated>
 //----------------------
 
-namespace StratoBlocAPI.Models
+namespace Strato.Bloc.Client.Models
 {
     /// <summary>Bloc Transaction Status</summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.25.0 (Newtonsoft.Json v9.0.0.0)")]
@@ -775,5 +775,4 @@ namespace StratoBlocAPI.Models
             return Newtonsoft.Json.JsonConvert.DeserializeObject<Contract>(data);
         }
     }
-
 }

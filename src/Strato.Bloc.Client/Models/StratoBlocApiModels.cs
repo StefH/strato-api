@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace StratoBlocAPI.Models
+namespace Strato.Bloc.Client.Models
 {
     public class ContractResponse
     {

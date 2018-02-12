@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Strato Bloc API</Description>
-    <Version>1.0.0-preview-01</Version>
+    <Description>Strato API</Description>
+    <Version>1.0.0-preview-00</Version>
     <Authors>Stef Heyenrath</Authors>
-    <TargetFrameworks>net452;net46;netstandard1.3;netstandard2.0</TargetFrameworks>
-    <PackageId>Strato.Bloc.API</PackageId>
-    <PackageTags>strato;api;blockchain;dapp;ethereum</PackageTags>
+    <TargetFrameworks>net45;net46;netstandard1.1;netstandard2.0</TargetFrameworks>
+    <PackageId>Strato.Client</PackageId>
+    <PackageTags>strato;api;blockchain;dapp;ethereum;blockapps;client;restease</PackageTags>
     <PackageReleaseNotes>See CHANGELOG.md</PackageReleaseNotes>
     <PackageIconUrl>https://raw.githubusercontent.com/stefh/strato-api/master/resources/blockapps-logo-blue.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/stefh/strato-api</PackageProjectUrl>
