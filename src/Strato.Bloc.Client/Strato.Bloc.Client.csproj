@@ -10,7 +10,7 @@
     <PackageReleaseNotes>See CHANGELOG.md</PackageReleaseNotes>
     <PackageIconUrl>https://raw.githubusercontent.com/stefh/strato-api/master/resources/blockapps-logo-blue.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/stefh/strato-api</PackageProjectUrl>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/stefh/strato-apit/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/stefh/strato-api/master/LICENSE</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/stefh/strato-api</RepositoryUrl>
   </PropertyGroup>
