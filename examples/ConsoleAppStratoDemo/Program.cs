@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using RestEase;
 using Strato.Bloc.Client.Api;
 using Strato.Bloc.Client.Models;
@@ -54,17 +57,34 @@ namespace ConsoleAppStratoDemo
 
             var search = await client.ContractsSearchGetAsync("MyFirstContract");
 
+            string name = "Test" + DateTime.UtcNow.Ticks;
             var contractRequest = new PostUsersContractRequest
             {
                 Password = "stefstef",
-                // Contract = "Test02",
-                Src = "contract Test02 { uint storedData; function set(uint x) { storedData = x; } function get() returns (uint retVal) { return storedData; } }"
+                Contract = name,
+                Src = "contract " + name + " { uint storedData; function set(uint x) { storedData = x; } function get() returns (uint retVal) { return storedData; } }"
             };
-            var create = await client.UsersContractPostAsync("stef-01", "eb872895e2729a3c75109322c82eee662ec934b4", contractRequest);
+            var create = await client.UserContractPostAsync("stef-01", "eb872895e2729a3c75109322c82eee662ec934b4", contractRequest);
+            Console.WriteLine("create = " + JsonConvert.SerializeObject(create));
 
-            var res = await client.TransactionResultsGetAsync(create.Hash);
+            // Takes about 10 to 30 seconds
+            int i = 0;
+            BlocTransactionResult res;
+            for (; ; )
+            {
+                res = await client.TransactionResultsGetAsync(create.Hash);
+                i++;
 
-            int y = 99;
+                Console.WriteLine("Waiting...");
+                Thread.Sleep(5000);
+
+                if (res.Status == BlocTransactionStatus.Success || i > 10)
+                {
+                    break;
+                }
+            }
+
+            Console.WriteLine($"i={i}, res={JsonConvert.SerializeObject(res)}");
         }
     }
 }

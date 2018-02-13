@@ -41,7 +41,7 @@ namespace Strato.Client.Api
         Task<IEnumerable<Transaction>> TransactionsGetAsync(string from = null, string to = null, string address = null, long? value = null, long? maxvalue = null, long? minvalue = null, long? gasprice = null, long? maxgasprice = null, long? mingasprice = null, long? gaslimit = null, long? maxgaslimit = null, long? mingaslimit = null, long? blocknumber = null, string hash = null);
 
         [Get("transaction/last/{number}")]
-        Task<IEnumerable<Transaction>> TransactionLastIntegerGetAsync(long number);
+        Task<IEnumerable<Transaction>> TransactionLastGetAsync([Path] long number);
 
         [Post("transactionList")]
         Task<IEnumerable<string>> TransactionListPostAsync([Body] IEnumerable<PostTransaction> body);
@@ -53,6 +53,6 @@ namespace Strato.Client.Api
         Task<BatchTransactionResult> TransactionResultBatchPostAsync([Body] IEnumerable<string> hashList);
 
         [Get("transactionResult/{hash}")]
-        Task<IEnumerable<TransactionResult>> TransactionResultsHashGetAsync(string hash);
+        Task<IEnumerable<TransactionResult>> TransactionResultsHashGetAsync([Path] string hash);
     }
 }
