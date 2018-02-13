@@ -8,15 +8,19 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution", "solution", "{3877907E-3C7F-4AE0-BF17-5A0B279E1D0D}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+		api\strato-api.yml = api\strato-api.yml
+		api\strato-bloc-api.yml = api\strato-bloc-api.yml
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StratoAPI", "src\StratoAPI\StratoAPI.csproj", "{84FDCCEE-A60C-40AC-8F7C-A65A70C8C540}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{4C094643-C379-47FD-8090-D4B05408D4FA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppStratoDemo", "examples\ConsoleAppStratoDemo\ConsoleAppStratoDemo.csproj", "{86CD7B5C-EFF2-4A34-9B4C-381F0EF89CB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StratoBlocAPI", "src\StratoBlocAPI\StratoBlocAPI.csproj", "{7607FB0A-D5A8-407F-882F-5E4FA7D70FF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Strato.Client", "src\Strato.Client\Strato.Client.csproj", "{C809C2BF-4E54-43C3-B5A1-09E9C671666F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Strato.Bloc.Client", "src\Strato.Bloc.Client\Strato.Bloc.Client.csproj", "{8372D0B1-65EC-4807-A853-34B5AC44BE18}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9100E648-BF54-4C4C-BA01-2CE58CFC86DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,26 +28,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{84FDCCEE-A60C-40AC-8F7C-A65A70C8C540}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84FDCCEE-A60C-40AC-8F7C-A65A70C8C540}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84FDCCEE-A60C-40AC-8F7C-A65A70C8C540}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84FDCCEE-A60C-40AC-8F7C-A65A70C8C540}.Release|Any CPU.Build.0 = Release|Any CPU
 		{86CD7B5C-EFF2-4A34-9B4C-381F0EF89CB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{86CD7B5C-EFF2-4A34-9B4C-381F0EF89CB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86CD7B5C-EFF2-4A34-9B4C-381F0EF89CB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86CD7B5C-EFF2-4A34-9B4C-381F0EF89CB3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7607FB0A-D5A8-407F-882F-5E4FA7D70FF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7607FB0A-D5A8-407F-882F-5E4FA7D70FF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7607FB0A-D5A8-407F-882F-5E4FA7D70FF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7607FB0A-D5A8-407F-882F-5E4FA7D70FF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C809C2BF-4E54-43C3-B5A1-09E9C671666F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C809C2BF-4E54-43C3-B5A1-09E9C671666F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C809C2BF-4E54-43C3-B5A1-09E9C671666F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C809C2BF-4E54-43C3-B5A1-09E9C671666F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8372D0B1-65EC-4807-A853-34B5AC44BE18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8372D0B1-65EC-4807-A853-34B5AC44BE18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8372D0B1-65EC-4807-A853-34B5AC44BE18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8372D0B1-65EC-4807-A853-34B5AC44BE18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{84FDCCEE-A60C-40AC-8F7C-A65A70C8C540} = {BB7C07ED-92DB-4D55-A618-54E15AB3E3FA}
 		{86CD7B5C-EFF2-4A34-9B4C-381F0EF89CB3} = {4C094643-C379-47FD-8090-D4B05408D4FA}
-		{7607FB0A-D5A8-407F-882F-5E4FA7D70FF8} = {BB7C07ED-92DB-4D55-A618-54E15AB3E3FA}
+		{C809C2BF-4E54-43C3-B5A1-09E9C671666F} = {BB7C07ED-92DB-4D55-A618-54E15AB3E3FA}
+		{8372D0B1-65EC-4807-A853-34B5AC44BE18} = {BB7C07ED-92DB-4D55-A618-54E15AB3E3FA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A059C177-D7B0-44A4-A6A8-FC9A0337BE77}

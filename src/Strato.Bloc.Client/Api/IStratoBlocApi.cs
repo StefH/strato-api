@@ -1,25 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using RestEase;
-using StratoBlocAPI.Models;
+using Strato.Bloc.Client.Models;
 
-namespace StratoBlocAPI.Api
+namespace Strato.Bloc.Client.Api
 {
     /// <summary>
-    /// See http://archive.ame-church.com/bloc-server/1.2/docs
+    /// See http://stratodev.blockapps.net/docs/?url=/bloc/v2.2/swagger.json and http://archive.ame-church.com/bloc-server/1.2/docs
     /// </summary>
     public interface IStratoBlocApi
     {
-        /// <summary>
-        /// Returns the array of users with keys
-        /// </summary>
         [Get("users")]
         Task<IEnumerable<string>> UsersGetAsync();
 
-        /// <summary>
-        /// Returns an array of user public addresses.
-        /// </summary>
-        /// <param name="user"></param>
         [Get("users/{user}")]
         Task<IEnumerable<string>> UsersGetAsync([Path] string user);
 
@@ -34,5 +27,11 @@ namespace StratoBlocAPI.Api
 
         [Post("users/{user}/{userAddress}/contract/{contractName}/{contractAddress}/call")]
         Task<BlocTransactionResult> UsersContractMethodCallPostAsync([Path] string user, [Path] string userAddress, [Path] string contractName, [Path] string contractAddress, [Body] PostUsersContractMethodRequest request);
+
+        [Post("transaction")]
+        Task<string> TransactionPostAsync([Body] PostTransaction body);
+
+        [Get("/transactions/{hash}/result")]
+        Task<BlocTransactionResult> TransactionResultsGetAsync([Path] string hash);
     }
 }

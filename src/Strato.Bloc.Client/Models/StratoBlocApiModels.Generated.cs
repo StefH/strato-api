@@ -4,7 +4,7 @@
 // </auto-generated>
 //----------------------
 
-namespace StratoBlocAPI.Models
+namespace Strato.Bloc.Client.Models
 {
     /// <summary>Bloc Transaction Status</summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.25.0 (Newtonsoft.Json v9.0.0.0)")]
@@ -95,54 +95,6 @@ namespace StratoBlocAPI.Models
         public static BlocTransactionData FromJson(string data)
         {
             return Newtonsoft.Json.JsonConvert.DeserializeObject<BlocTransactionData>(data);
-        }
-    }
-
-    /// <summary>Post Transaction</summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.10.25.0 (Newtonsoft.Json v9.0.0.0)")]
-    public partial class PostTransaction
-    {
-        [Newtonsoft.Json.JsonProperty("hash", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Hash { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("gasLimit", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double GasLimit { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("codeOrData", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string CodeOrData { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("gasPrice", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double GasPrice { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("to", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string To { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("from", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string From { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("value", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Value { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("r", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string R { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("s", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string S { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("v", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string V { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("nonce", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double Nonce { get; set; }
-
-        public string ToJson()
-        {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
-        }
-
-        public static PostTransaction FromJson(string data)
-        {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<PostTransaction>(data);
         }
     }
 
@@ -775,5 +727,4 @@ namespace StratoBlocAPI.Models
             return Newtonsoft.Json.JsonConvert.DeserializeObject<Contract>(data);
         }
     }
-
 }
