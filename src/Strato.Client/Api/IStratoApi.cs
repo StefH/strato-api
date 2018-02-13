@@ -22,7 +22,8 @@ namespace Strato.Client.Api
         [Post("extabi")]
         Task<ExtabiResponse> ExtabiPostAsync(string src);
 
-        // Task<string> FaucetPostAsync(string address);
+        [Post("faucet")]
+        Task<string> FaucetPostAsync(string address);
 
         [Post("solc")]
         Task<SolcResponse> SolcPostAsync(string src);
@@ -39,14 +40,19 @@ namespace Strato.Client.Api
         [Get("transaction")]
         Task<IEnumerable<Transaction>> TransactionsGetAsync(string from = null, string to = null, string address = null, long? value = null, long? maxvalue = null, long? minvalue = null, long? gasprice = null, long? maxgasprice = null, long? mingasprice = null, long? gaslimit = null, long? maxgaslimit = null, long? mingaslimit = null, long? blocknumber = null, string hash = null);
 
-        // Task<IEnumerable<Transaction>> TransactionLastIntegerGetAsync(long? integer);
+        [Get("transaction/last/{number}")]
+        Task<IEnumerable<Transaction>> TransactionLastIntegerGetAsync(long number);
 
-        // Task<IEnumerable<string>> TransactionListPostAsync(IEnumerable<PostTransaction> body);
+        [Post("transactionList")]
+        Task<IEnumerable<string>> TransactionListPostAsync([Body] IEnumerable<PostTransaction> body);
 
-        // Task<string> TransactionPostAsync(PostTransaction body);
+        [Post("transaction")]
+        Task<string> TransactionPostAsync([Body] PostTransaction body);
 
-        // Task<BatchTransactionResult> TransactionResultBatchPostAsync(IEnumerable<string> body);
+        [Post("transactionResult/batch")]
+        Task<BatchTransactionResult> TransactionResultBatchPostAsync([Body] IEnumerable<string> hashList);
 
-        // Task<IEnumerable<TransactionResult>> TransactionResultHashGetAsync(string hash);
+        [Get("transactionResult/{hash}")]
+        Task<IEnumerable<TransactionResult>> TransactionResultsHashGetAsync(string hash);
     }
 }

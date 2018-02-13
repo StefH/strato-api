@@ -1,0 +1,2245 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "2.2",
+    "title": "Bloc API",
+    "description": "This is the V2.2 API for the BlocH"
+  },
+  "basePath": "/bloc/v2.2",
+  "paths": {
+    "/": {
+      "get": {
+        "produces": [
+          "text/plain;charset=utf-8",
+          "application/json;charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/User Name"
+              },
+              "type": "array"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/users/{user}": {
+      "get": {
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "name": "user",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "`user` not found"
+          },
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Address"
+              },
+              "type": "array"
+            },
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "consumes": [
+          "application/json;charset=utf-8",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "name": "user",
+            "type": "string"
+          },
+          {
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Password"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "`user` not found"
+          },
+          "400": {
+            "description": "Invalid `body`"
+          },
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Address"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/users/{user}/{address}/fill": {
+      "post": {
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "name": "user",
+            "type": "string"
+          },
+          {
+            
+            "format": "hex string",
+            "minimum": 0,
+            "required": true,
+            "in": "path",
+            "name": "address",
+            "type": "string"
+          },
+          {
+            "default": false,
+            "in": "query",
+            "name": "resolve",
+            "allowEmptyValue": true,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "`user` or `address` not found"
+          },
+          "400": {
+            "description": "Invalid `resolve`"
+          },
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/BlocTransactionResult"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/users/{user}/{address}/send": {
+      "post": {
+        "consumes": [
+          "application/json;charset=utf-8"
+        ],
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "name": "user",
+            "type": "string"
+          },
+          {
+            
+            "format": "hex string",
+            "minimum": 0,
+            "required": true,
+            "in": "path",
+            "name": "address",
+            "type": "string"
+          },
+          {
+            "default": false,
+            "in": "query",
+            "name": "resolve",
+            "allowEmptyValue": true,
+            "type": "boolean"
+          },
+          {
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PostSendParameters"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "`user` or `address` not found"
+          },
+          "400": {
+            "description": "Invalid `body` or `resolve`"
+          },
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/BlocTransactionResult"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/users/{user}/{address}/contract": {
+      "post": {
+        "consumes": [
+          "application/json;charset=utf-8"
+        ],
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "name": "user",
+            "type": "string"
+          },
+          {
+            
+            "format": "hex string",
+            "minimum": 0,
+            "required": true,
+            "in": "path",
+            "name": "address",
+            "type": "string"
+          },
+          {
+            "default": false,
+            "in": "query",
+            "name": "resolve",
+            "allowEmptyValue": true,
+            "type": "boolean"
+          },
+          {
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Post Users Contract Request"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "`user` or `address` not found"
+          },
+          "400": {
+            "description": "Invalid `body` or `resolve`"
+          },
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/BlocTransactionResult"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/users/{user}/{address}/uploadList": {
+      "post": {
+        "consumes": [
+          "application/json;charset=utf-8"
+        ],
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "name": "user",
+            "type": "string"
+          },
+          {
+            
+            "format": "hex string",
+            "minimum": 0,
+            "required": true,
+            "in": "path",
+            "name": "address",
+            "type": "string"
+          },
+          {
+            "default": false,
+            "in": "query",
+            "name": "resolve",
+            "allowEmptyValue": true,
+            "type": "boolean"
+          },
+          {
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UploadListRequest"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "`user` or `address` not found"
+          },
+          "400": {
+            "description": "Invalid `body` or `resolve`"
+          },
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/BlocTransactionResult"
+              },
+              "type": "array"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/users/{user}/{userAddress}/contract/{contractName}/{contractAddress}/call": {
+      "post": {
+        "consumes": [
+          "application/json;charset=utf-8"
+        ],
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "name": "user",
+            "type": "string"
+          },
+          {
+            
+            "format": "hex string",
+            "minimum": 0,
+            "required": true,
+            "in": "path",
+            "name": "userAddress",
+            "type": "string"
+          },
+          {
+            "required": true,
+            "in": "path",
+            "name": "contractName",
+            "type": "string"
+          },
+          {
+            
+            "format": "hex string",
+            "minimum": 0,
+            "required": true,
+            "in": "path",
+            "name": "contractAddress",
+            "type": "string"
+          },
+          {
+            "default": false,
+            "in": "query",
+            "name": "resolve",
+            "allowEmptyValue": true,
+            "type": "boolean"
+          },
+          {
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Post Users Contract Method Request"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "`user` or `userAddress` or `contractName` or `contractAddress` not found"
+          },
+          "400": {
+            "description": "Invalid `body` or `resolve`"
+          },
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/BlocTransactionResult"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/users/{user}/{userAddress}/sendList": {
+      "post": {
+        "consumes": [
+          "application/json;charset=utf-8"
+        ],
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "name": "user",
+            "type": "string"
+          },
+          {
+            
+            "format": "hex string",
+            "minimum": 0,
+            "required": true,
+            "in": "path",
+            "name": "userAddress",
+            "type": "string"
+          },
+          {
+            "default": false,
+            "in": "query",
+            "name": "resolve",
+            "allowEmptyValue": true,
+            "type": "boolean"
+          },
+          {
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Post Users Send List Request"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "`user` or `userAddress` not found"
+          },
+          "400": {
+            "description": "Invalid `body` or `resolve`"
+          },
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/BlocTransactionResult"
+              },
+              "type": "array"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/users/{user}/{address}/callList": {
+      "post": {
+        "consumes": [
+          "application/json;charset=utf-8"
+        ],
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "name": "user",
+            "type": "string"
+          },
+          {
+            
+            "format": "hex string",
+            "minimum": 0,
+            "required": true,
+            "in": "path",
+            "name": "address",
+            "type": "string"
+          },
+          {
+            "default": false,
+            "in": "query",
+            "name": "resolve",
+            "allowEmptyValue": true,
+            "type": "boolean"
+          },
+          {
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Post Method List Request"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "`user` or `address` not found"
+          },
+          "400": {
+            "description": "Invalid `body` or `resolve`"
+          },
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/BlocTransactionResult"
+              },
+              "type": "array"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/addresses": {
+      "get": {
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Address"
+              },
+              "type": "array"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/contracts": {
+      "get": {
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/GetContractResponse"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/contracts/{contractName}": {
+      "get": {
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "name": "contractName",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "`contractName` not found"
+          },
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Contract Name, \"Latest\", Or Address"
+              },
+              "type": "array"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/contracts/{contractName}/{contractAddress}": {
+      "get": {
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "name": "contractName",
+            "type": "string"
+          },
+          {
+            
+            "format": "hex string",
+            "minimum": 0,
+            "required": true,
+            "in": "path",
+            "name": "contractAddress",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "`contractName` or `contractAddress` not found"
+          },
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ContractDetails"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/contracts/{contractName}/{contractAddress}/state": {
+      "get": {
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "name": "contractName",
+            "type": "string"
+          },
+          {
+            
+            "format": "hex string",
+            "minimum": 0,
+            "required": true,
+            "in": "path",
+            "name": "contractAddress",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "`contractName` or `contractAddress` not found"
+          },
+          "200": {
+            "schema": {
+              "additionalProperties": {
+                "$ref": "#/definitions/Solidity Value"
+              },
+              "type": "object"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/contracts/{contractName}/{contractAddress}/functions": {
+      "get": {
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "name": "contractName",
+            "type": "string"
+          },
+          {
+            
+            "format": "hex string",
+            "minimum": 0,
+            "required": true,
+            "in": "path",
+            "name": "contractAddress",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "`contractName` or `contractAddress` not found"
+          },
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Function Name"
+              },
+              "type": "array"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/contracts/{contractName}/{contractAddress}/symbols": {
+      "get": {
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "name": "contractName",
+            "type": "string"
+          },
+          {
+            
+            "format": "hex string",
+            "minimum": 0,
+            "required": true,
+            "in": "path",
+            "name": "contractAddress",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "`contractName` or `contractAddress` not found"
+          },
+          "200": {
+            "schema": {
+              "items": {
+                "example": "SymbolName",
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/contracts/{contractName}/{contractAddress}/state/{mapping}/{key}": {
+      "get": {
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "name": "contractName",
+            "type": "string"
+          },
+          {
+            
+            "format": "hex string",
+            "minimum": 0,
+            "required": true,
+            "in": "path",
+            "name": "contractAddress",
+            "type": "string"
+          },
+          {
+            "required": true,
+            "in": "path",
+            "name": "mapping",
+            "type": "string"
+          },
+          {
+            "required": true,
+            "in": "path",
+            "name": "key",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "`contractName` or `contractAddress` or `mapping` or `key` not found"
+          },
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Get Contract States Mapping Response"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/contracts/{contractName}/all/states": {
+      "get": {
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "name": "contractName",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "`contractName` not found"
+          },
+          "200": {
+            "schema": {
+              "items": {
+                "additionalProperties": {
+                  "additionalProperties": {
+                    "$ref": "#/definitions/Solidity Value"
+                  },
+                  "type": "object"
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/contracts/{contractName}/{contractAddress}/enum/{enumName}": {
+      "get": {
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "name": "contractName",
+            "type": "string"
+          },
+          {
+            
+            "format": "hex string",
+            "minimum": 0,
+            "required": true,
+            "in": "path",
+            "name": "contractAddress",
+            "type": "string"
+          },
+          {
+            "required": true,
+            "in": "path",
+            "name": "enumName",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "`contractName` or `contractAddress` or `enumName` not found"
+          },
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Enum Value"
+              },
+              "type": "array"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/contracts/compile": {
+      "post": {
+        "consumes": [
+          "application/json;charset=utf-8"
+        ],
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Post Compile Request"
+              },
+              "type": "array"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid `body`"
+          },
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Post Compile Response"
+              },
+              "type": "array"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/search/{contractName}": {
+      "get": {
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "name": "contractName",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "`contractName` not found"
+          },
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Contract Name, \"Latest\", Or Address"
+              },
+              "type": "array"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/search/{contractName}/state": {
+      "get": {
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "name": "contractName",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "`contractName` not found"
+          },
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Search Contract State"
+              },
+              "type": "array"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/search/{contractName}/state/reduced": {
+      "get": {
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "name": "contractName",
+            "type": "string"
+          },
+          {
+            "items": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "props",
+            "collectionFormat": "multi",
+            "type": "array"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "`contractName` not found"
+          },
+          "400": {
+            "description": "Invalid `props`"
+          },
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Search Contract State"
+              },
+              "type": "array"
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/transactions/{hash}/result": {
+      "get": {
+        "produces": [
+          "application/json;charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "in": "path",
+            "name": "hash",
+            "type": "string"
+          },
+          {
+            "default": false,
+            "in": "query",
+            "name": "resolve",
+            "allowEmptyValue": true,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "`hash` not found"
+          },
+          "400": {
+            "description": "Invalid `resolve`"
+          },
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/BlocTransactionResult"
+            },
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User Name": {
+      "description": "User Name",
+      "example": "Martin",
+      "type": "string"
+    },
+    "Address": {
+      "description": "Ethereum Address, 20 byte hex encoded string",
+      "example": "address=deadbeef",
+      "type": "string"
+    },
+    "Password": {
+      "description": "Password",
+      "example": "securePassword",
+      "type": "string"
+    },
+    "BlocTransactionResult": {
+      "description": "Bloc Transaction Result",
+      "required": [
+        "transactionStatus",
+        "transactionHash"
+      ],
+      "properties": {
+        "transactionStatus": {
+          "$ref": "#/definitions/BlocTransactionStatus"
+        },
+        "transactionHash": {
+          "$ref": "#/definitions/Keccak256 hash, 32 byte hex encoded string"
+        },
+        "transactionTxResult": {
+          "$ref": "#/definitions/TransactionResult"
+        },
+        "transactionData": {
+          "$ref": "#/definitions/Bloc Transaction Data"
+        }
+      },
+      "example": {
+        "status": "Success",
+        "hash": "41b1a0649752af1b28b3dc29a1556eee781e4a4c3a1f7f53f90fa834de098c4d",
+        "txResult": null,
+        "data": null
+      },
+      "type": "object"
+    },
+    "BlocTransactionStatus": {
+      "description": "Bloc Transaction Status",
+      "example": "Success",
+      "type": "string",
+      "enum": [
+        "Success",
+        "Failure",
+        "Pending"
+      ]
+    },
+    "Keccak256 hash, 32 byte hex encoded string": {
+      "description": "Keccak256 hash, 32 byte hex encoded string",
+      "example": "4fbe47914a102ae6561597c95ab95819ddfd6b18c7abc3004c099aeaed2234b4",
+      "type": "string"
+    },
+    "TransactionResult": {
+      "description": "Transaction Result",
+      "required": [
+        "blockHash",
+        "transactionHash",
+        "message",
+        "response",
+        "trace",
+        "gasUsed",
+        "etherUsed",
+        "contractsCreated",
+        "contractsDeleted",
+        "stateDiff",
+        "time",
+        "newStorage",
+        "deletedStorage"
+      ],
+      "properties": {
+        "blockHash": {
+          "$ref": "#/definitions/Keccak256 hash, 32 byte hex encoded string"
+        },
+        "transactionHash": {
+          "$ref": "#/definitions/Keccak256 hash, 32 byte hex encoded string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "response": {
+          "type": "string"
+        },
+        "trace": {
+          "type": "string"
+        },
+        "gasUsed": {
+          "$ref": "#/definitions/hex word256"
+        },
+        "etherUsed": {
+          "$ref": "#/definitions/hex word256"
+        },
+        "contractsCreated": {
+          "type": "string"
+        },
+        "contractsDeleted": {
+          "type": "string"
+        },
+        "stateDiff": {
+          "type": "string"
+        },
+        "time": {
+          "format": "double",
+          "type": "number"
+        },
+        "newStorage": {
+          "type": "string"
+        },
+        "deletedStorage": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "deletedStorage": "Deleted Storage",
+        "contractsDeleted": "[MyOldContract]",
+        "gasUsed": "ffffffffffffffff",
+        "stateDiff": "I am a state Diff",
+        "time": 0.2321,
+        "response": "I'm a tx result response",
+        "blockHash": "ed167af05357a559c591267b8c797507f5527a7088caf411d33b89be727610f0",
+        "transactionHash": "1bc9423464da0090d450d66757be3b7a9a9c9287e636d67b173dc643bb1dfeb9",
+        "etherUsed": "a",
+        "newStorage": "New Storage",
+        "message": "I'm a tx result message",
+        "trace": "tx trace",
+        "contractsCreated": "[MyNewContractA, MyNewContractB]"
+      },
+      "type": "object"
+    },
+    "hex word256": {
+      "format": "binary",
+      "type": "string"
+    },
+    "Bloc Transaction Data": {
+      "description": "Bloc Transaction Data",
+      "properties": {
+        "Send": {
+          "$ref": "#/definitions/PostTransaction"
+        },
+        "Upload": {
+          "$ref": "#/definitions/ContractDetails"
+        },
+        "Call": {
+          "items": {
+            "$ref": "#/definitions/Solidity Value"
+          },
+          "type": "array"
+        }
+      },
+      "example": {
+        "tag": "Call",
+        "contents": []
+      },
+      "maxProperties": 1,
+      "minProperties": 1,
+      "type": "object"
+    },
+    "PostTransaction": {
+      "description": "Post Transaction",
+      "required": [
+        "hash",
+        "gasLimit",
+        "codeOrData",
+        "gasPrice",
+        "from",
+        "value",
+        "r",
+        "s",
+        "v",
+        "nonce"
+      ],
+      "properties": {
+        "hash": {
+          "$ref": "#/definitions/Keccak256 hash, 32 byte hex encoded string"
+        },
+        "gasLimit": {
+          "$ref": "#/definitions/Natural"
+        },
+        "codeOrData": {
+          "type": "string"
+        },
+        "gasPrice": {
+          "$ref": "#/definitions/Natural"
+        },
+        "to": {
+          "$ref": "#/definitions/Address"
+        },
+        "from": {
+          "$ref": "#/definitions/Address"
+        },
+        "value": {
+          "$ref": "#/definitions/Natural"
+        },
+        "r": {
+          "$ref": "#/definitions/hex natural"
+        },
+        "s": {
+          "$ref": "#/definitions/hex natural"
+        },
+        "v": {
+          "$ref": "#/definitions/hex word8"
+        },
+        "nonce": {
+          "$ref": "#/definitions/Natural"
+        }
+      },
+      "example": {
+        "hash": "4fbe47914a102ae6561597c95ab95819ddfd6b18c7abc3004c099aeaed2234b4",
+        "gasLimit": 21000,
+        "codeOrData": "",
+        "gasPrice": 50000000000,
+        "to": "00000000000000000000000000000000deadbeef",
+        "value": "10000000000000000000",
+        "from": "111dec89c25cbda1c12d67621ee3c10ddb8196bf",
+        "r": "1",
+        "s": "1",
+        "v": "1c",
+        "nonce": 0
+      },
+      "type": "object"
+    },
+    "Natural": {
+      "example": 8,
+      "type": "number"
+    },
+    "hex natural": {
+      "example": "8",
+      "type": "string"
+    },
+    "hex word8": {
+      "format": "binary",
+      "type": "string"
+    },
+    "ContractDetails": {
+      "description": "Returned data from contract creation.",
+      "required": [
+        "bin",
+        "binRuntime",
+        "codeHash",
+        "name",
+        "xabi"
+      ],
+      "properties": {
+        "bin": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/Contract Name, \"Latest\", Or Address"
+        },
+        "binRuntime": {
+          "type": "string"
+        },
+        "codeHash": {
+          "$ref": "#/definitions/Keccak256 hash, 32 byte hex encoded string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "xabi": {
+          "$ref": "#/definitions/Xabi schema"
+        }
+      },
+      "example": {
+        "bin": "ContractBin",
+        "address": "00000000000000000000000000000000deadbeef",
+        "bin-runtime": "ContractRuntime",
+        "codeHash": "682a7e258d80bd2421d3103cbe71e3e3b82138116756b97b8256f061dc2f11fb",
+        "name": "DetailsName",
+        "xabi": {
+          "modifiers": {
+            "onlyOwner": {
+              "args": {},
+              "contents": "if (msg.sender != owner) throw; _;",
+              "selector": "onlyOwner",
+              "vals": {}
+            }
+          },
+          "funcs": {
+            "set": {
+              "modifiers": null,
+              "args": {
+                "x": {
+                  "signed": false,
+                  "type": "Int",
+                  "index": 0,
+                  "bytes": 32
+                }
+              },
+              "contents": "return; ",
+              "visibility": null,
+              "payable": null,
+              "vals": {},
+              "mutable": null
+            },
+            "get": {
+              "modifiers": null,
+              "args": {},
+              "contents": "return x; ",
+              "visibility": null,
+              "payable": null,
+              "vals": {
+                "#0": {
+                  "signed": false,
+                  "type": "Int",
+                  "index": 0,
+                  "bytes": 32
+                }
+              },
+              "mutable": null
+            }
+          },
+          "types": {
+            "SimpleStorage": {
+              "names": [
+                "SUCCESS",
+                "ERROR"
+              ],
+              "type": "Enum",
+              "bytes": 0
+            }
+          },
+          "constr": {},
+          "vars": {
+            "storedData": {
+              "atBytes": 0,
+              "signed": false,
+              "type": "Int",
+              "bytes": 32,
+              "public": false
+            }
+          }
+        }
+      },
+      "type": "object"
+    },
+    "Contract Name, \"Latest\", Or Address": {
+      "description": "Contract Name, \"Latest\", Or Address",
+      "example": "00000000000000000000000000000000deadbeef",
+      "type": "string"
+    },
+    "Xabi schema": {
+      "description": "Xabi types",
+      "required": [
+        "funcs",
+        "constr",
+        "vars",
+        "types",
+        "modifiers"
+      ],
+      "properties": {
+        "funcs": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Function Type"
+          },
+          "type": "object"
+        },
+        "constr": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Function Type"
+          },
+          "type": "object"
+        },
+        "vars": {
+          "additionalProperties": {
+            "$ref": "#/definitions/VarType"
+          },
+          "type": "object"
+        },
+        "types": {
+          "additionalProperties": {
+            "$ref": "#/definitions/TypeDef"
+          },
+          "type": "object"
+        },
+        "modifiers": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Function Modifier"
+          },
+          "type": "object"
+        }
+      },
+      "example": {
+        "modifiers": {
+          "onlyOwner": {
+            "args": {},
+            "contents": "if (msg.sender != owner) throw; _;",
+            "selector": "onlyOwner",
+            "vals": {}
+          }
+        },
+        "funcs": {
+          "set": {
+            "modifiers": null,
+            "args": {
+              "x": {
+                "signed": false,
+                "type": "Int",
+                "index": 0,
+                "bytes": 32
+              }
+            },
+            "contents": "return; ",
+            "visibility": null,
+            "payable": null,
+            "vals": {},
+            "mutable": null
+          },
+          "get": {
+            "modifiers": null,
+            "args": {},
+            "contents": "return x; ",
+            "visibility": null,
+            "payable": null,
+            "vals": {
+              "#0": {
+                "signed": false,
+                "type": "Int",
+                "index": 0,
+                "bytes": 32
+              }
+            },
+            "mutable": null
+          }
+        },
+        "types": {
+          "SimpleStorage": {
+            "names": [
+              "SUCCESS",
+              "ERROR"
+            ],
+            "type": "Enum",
+            "bytes": 0
+          }
+        },
+        "constr": {},
+        "vars": {
+          "storedData": {
+            "atBytes": 0,
+            "signed": false,
+            "type": "Int",
+            "bytes": 32,
+            "public": false
+          }
+        }
+      },
+      "type": "object"
+    },
+    "Function Type": {
+      "description": "Xabi Function Type",
+      "required": [
+        "args",
+        "vals"
+      ],
+      "properties": {
+        "args": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Solidity type"
+          },
+          "type": "object"
+        },
+        "vals": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Solidity type"
+          },
+          "type": "object"
+        },
+        "contents": {
+          "type": "string"
+        },
+        "mutable": {
+          "type": "boolean"
+        },
+        "payable": {
+          "type": "boolean"
+        },
+        "visibility": {
+          "$ref": "#/definitions/Visibility of a Function"
+        },
+        "modifiers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "example": {
+        "modifiers": null,
+        "args": {
+          "userAddress": {
+            "signed": false,
+            "type": "Int",
+            "index": 0,
+            "bytes": 32
+          }
+        },
+        "contents": "return userAddress;",
+        "visibility": null,
+        "payable": null,
+        "vals": {
+          "#0": {
+            "signed": false,
+            "type": "Int",
+            "index": 0,
+            "bytes": 32
+          }
+        },
+        "mutable": null
+      },
+      "type": "object"
+    },
+    "Solidity type": {
+      "description": "Represents a soldity type",
+      "required": [
+        "indexedTypeIndex",
+        "indexedTypeType"
+      ],
+      "properties": {
+        "indexedTypeIndex": {
+          "maximum": 2147483647,
+          "format": "int32",
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "indexedTypeType": {
+          "$ref": "#/definitions/Solidity type"
+        }
+      },
+      "example": {
+        "dynamic": false,
+        "value": {
+          "type": "Bytes"
+        },
+        "key": {
+          "type": "Address"
+        },
+        "type": "Mapping",
+        "index": 10
+      },
+      "type": "object"
+    },
+    "Visibility of a Function": {
+      "description": "Xabi Function Visibility",
+      "example": "Public",
+      "type": "string",
+      "enum": [
+        "Private",
+        "Public",
+        "Internal",
+        "External"
+      ]
+    },
+    "VarType": {
+      "description": "Represents a Solidity Variable",
+      "required": [
+        "varTypeAtBytes",
+        "varTypeType"
+      ],
+      "properties": {
+        "varTypeAtBytes": {
+          "maximum": 2147483647,
+          "format": "int32",
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "varTypePublic": {
+          "type": "boolean"
+        },
+        "varTypeType": {
+          "$ref": "#/definitions/Solidity type"
+        }
+      },
+      "example": {
+        "atBytes": 16,
+        "type": "Address",
+        "public": true
+      },
+      "type": "object"
+    },
+    "TypeDef": {
+      "description": "User defined type (Struct or Enum)",
+      "properties": {
+        "Enum": {
+          "required": [
+            "names",
+            "bytes"
+          ],
+          "type": "object",
+          "properties": {
+            "names": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "bytes": {
+              "maximum": 18446744073709551615,
+              "minimum": 0,
+              "type": "integer"
+            }
+          }
+        },
+        "Struct": {
+          "required": [
+            "fields",
+            "bytes"
+          ],
+          "type": "object",
+          "properties": {
+            "bytes": {
+              "maximum": 18446744073709551615,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "fields": {
+              "additionalProperties": {
+                "$ref": "#/definitions/FieldType"
+              },
+              "type": "object"
+            }
+          }
+        },
+        "Contract": {
+          "required": [
+            "bytes"
+          ],
+          "type": "object",
+          "properties": {
+            "bytes": {
+              "maximum": 18446744073709551615,
+              "minimum": 0,
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "example": {
+        "names": [
+          "SUCCESS",
+          "FAILURE",
+          "NOT_AUTHORIZED"
+        ],
+        "type": "Enum",
+        "bytes": 3735928559
+      },
+      "maxProperties": 1,
+      "minProperties": 1,
+      "type": "object"
+    },
+    "FieldType": {
+      "description": "Represents a Solidity Field Type",
+      "required": [
+        "fieldTypeAtBytes",
+        "fieldTypeType"
+      ],
+      "properties": {
+        "fieldTypeAtBytes": {
+          "maximum": 2147483647,
+          "format": "int32",
+          "minimum": -2147483648,
+          "type": "integer"
+        },
+        "fieldTypeType": {
+          "$ref": "#/definitions/Solidity type"
+        }
+      },
+      "example": {
+        "atBytes": 32,
+        "type": "Address"
+      },
+      "type": "object"
+    },
+    "Function Modifier": {
+      "description": "Xabi Function Modifier",
+      "required": [
+        "args",
+        "selector",
+        "vals"
+      ],
+      "properties": {
+        "args": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Solidity type"
+          },
+          "type": "object"
+        },
+        "selector": {
+          "type": "string"
+        },
+        "vals": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Solidity type"
+          },
+          "type": "object"
+        },
+        "contents": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "args": {
+          "userAddress": {
+            "signed": false,
+            "type": "Int",
+            "index": 0,
+            "bytes": 32
+          }
+        },
+        "contents": null,
+        "selector": "0adfe412",
+        "vals": {
+          "#0": {
+            "signed": false,
+            "type": "Int",
+            "index": 0,
+            "bytes": 32
+          }
+        }
+      },
+      "type": "object"
+    },
+    "Solidity Value": {
+      "description": "A Solidity return type value",
+      "example": true,
+      "type": "string"
+    },
+    "PostSendParameters": {
+      "description": "Send ether from one account to another (value is in Wei)",
+      "required": [
+        "toAddress",
+        "value",
+        "password"
+      ],
+      "properties": {
+        "toAddress": {
+          "$ref": "#/definitions/Address"
+        },
+        "value": {
+          "$ref": "#/definitions/Natural"
+        },
+        "password": {
+          "$ref": "#/definitions/Password"
+        },
+        "txParams": {
+          "$ref": "#/definitions/Transaction Parameters"
+        }
+      },
+      "example": {
+        "toAddress": "00000000000000000000000000000000deadbeef",
+        "value": "100000000",
+        "password": "securePassword",
+        "txParams": null
+      },
+      "type": "object"
+    },
+    "Transaction Parameters": {
+      "description": "Transaction Parameters",
+      "properties": {
+        "gasLimit": {
+          "maximum": 18446744073709551615,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "gasPrice": {
+          "maximum": 18446744073709551615,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "nonce": {
+          "maximum": 18446744073709551615,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "example": {
+        "gasLimit": 123,
+        "gasPrice": 345,
+        "nonce": 9876
+      },
+      "type": "object"
+    },
+    "Post Users Contract Request": {
+      "description": "Post Users Contract Request",
+      "required": [
+        "src",
+        "password"
+      ],
+      "properties": {
+        "src": {
+          "type": "string",
+          "description": "Solidity source code"
+        },
+        "password": {
+          "$ref": "#/definitions/Password"
+        },
+        "contract": {
+          "type": "string",
+          "description": "Contract name"
+        },
+        "args": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Solidity Argument Value"
+          },
+          "type": "object"
+        },
+        "txParams": {
+          "$ref": "#/definitions/Transaction Parameters"
+        },
+        "value": {
+          "type": "string",
+          "description": "Contract value in Eth"
+        }
+      },
+      "example": {
+        "password": "securePassword",
+        "contract": "SimpleStorage",
+        "src": "contract SimpleStorage { uint storedData; function set(uint x) { storedData = x; } function get() returns (uint retVal) { return storedData; } }"
+      },
+      "type": "object"
+    },
+    "Solidity Argument Value": {
+      "description": "A Solidity argument value",
+      "example": 5,
+      "type": "string"
+    },
+    "UploadListRequest": {
+      "description": "Make a request to upload a list of contracts",
+      "required": [
+        "password",
+        "contracts",
+        "resolve"
+      ],
+      "properties": {
+        "password": {
+          "$ref": "#/definitions/Password"
+        },
+        "contracts": {
+          "items": {
+            "$ref": "#/definitions/UploadListContract"
+          },
+          "type": "array"
+        },
+        "resolve": {
+          "type": "boolean"
+        }
+      },
+      "example": {
+        "contracts": [
+          {
+            "args": {
+              "balance": 10,
+              "accountType": "Checking"
+            },
+            "contractName": "AccountsContract"
+          }
+        ],
+        "resolve": true,
+        "password": "SecretPassword"
+      },
+      "type": "object"
+    },
+    "UploadListContract": {
+      "description": "A contract in a list of to-upload contracts",
+      "required": [
+        "contractName",
+        "args"
+      ],
+      "properties": {
+        "contractName": {
+          "type": "string"
+        },
+        "args": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Solidity Argument Value"
+          },
+          "type": "object"
+        },
+        "txParams": {
+          "$ref": "#/definitions/Transaction Parameters"
+        },
+        "value": {
+          "$ref": "#/definitions/Natural"
+        }
+      },
+      "example": {
+        "args": {
+          "age": 1,
+          "user": "Bob"
+        },
+        "contractName": "SampleContract",
+        "txParams": {
+          "gasLimit": 123,
+          "gasPrice": 345
+        }
+      },
+      "type": "object"
+    },
+    "Post Users Contract Method Request": {
+      "description": "Post Users Contract Method Request",
+      "required": [
+        "password",
+        "method",
+        "args"
+      ],
+      "properties": {
+        "password": {
+          "$ref": "#/definitions/Password"
+        },
+        "method": {
+          "type": "string",
+          "description": "Method name"
+        },
+        "args": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Solidity Argument Value"
+          },
+          "type": "object"
+        },
+        "value": {
+          "type": "string",
+          "description": "Method value in Eth"
+        },
+        "txParams": {
+          "$ref": "#/definitions/Transaction Parameters"
+        }
+      },
+      "example": {
+        "args": {},
+        "value": "0",
+        "method": "get",
+        "password": "securePassword"
+      },
+      "type": "object"
+    },
+    "Post Users Send List Request": {
+      "description": "Send a list of users some ether (value in Wei)",
+      "required": [
+        "password",
+        "resolve",
+        "txs"
+      ],
+      "properties": {
+        "password": {
+          "$ref": "#/definitions/Password"
+        },
+        "resolve": {
+          "type": "boolean"
+        },
+        "txs": {
+          "items": {
+            "$ref": "#/definitions/Send Transaction"
+          },
+          "type": "array"
+        }
+      },
+      "example": {
+        "resolve": false,
+        "password": "MyPassword",
+        "txs": [
+          {
+            "toAddress": "00000000000000000000000000000000deadbeef",
+            "value": "1000000000000000",
+            "txParams": {
+              "gasLimit": 123,
+              "gasPrice": 345,
+              "nonce": 9876
+            }
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "Send Transaction": {
+      "description": "Single transaction for batch",
+      "required": [
+        "toAddress",
+        "value"
+      ],
+      "properties": {
+        "toAddress": {
+          "$ref": "#/definitions/Address"
+        },
+        "value": {
+          "$ref": "#/definitions/Natural"
+        },
+        "txParams": {
+          "$ref": "#/definitions/Transaction Parameters"
+        }
+      },
+      "example": {
+        "toAddress": "00000000000000000000000000000000deadbeef",
+        "value": "100000000000000",
+        "txParams": {
+          "gasLimit": 123,
+          "gasPrice": 345,
+          "nonce": 9876
+        }
+      },
+      "type": "object"
+    },
+    "Post Method List Request": {
+      "description": "Everything you need to batch method calls",
+      "required": [
+        "password",
+        "resolve",
+        "txs"
+      ],
+      "properties": {
+        "password": {
+          "$ref": "#/definitions/Password"
+        },
+        "resolve": {
+          "type": "boolean"
+        },
+        "txs": {
+          "items": {
+            "$ref": "#/definitions/Method Call"
+          },
+          "type": "array"
+        }
+      },
+      "example": {
+        "resolve": true,
+        "password": "MyPassword",
+        "txs": [
+          {
+            "contractAddress": "00000000000000000000000000000000deadbeef",
+            "args": {
+              "age": 52,
+              "user": "Bob"
+            },
+            "contractName": "HorroscopeApp",
+            "methodName": "getHoroscope",
+            "value": "1000000000"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "Method Call": {
+      "description": "Everything you'll need for a method call",
+      "required": [
+        "contractName",
+        "contractAddress",
+        "methodName",
+        "args",
+        "value"
+      ],
+      "properties": {
+        "contractName": {
+          "type": "string"
+        },
+        "contractAddress": {
+          "$ref": "#/definitions/Address"
+        },
+        "methodName": {
+          "type": "string"
+        },
+        "args": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Solidity Argument Value"
+          },
+          "type": "object"
+        },
+        "value": {
+          "$ref": "#/definitions/Natural"
+        },
+        "txParams": {
+          "$ref": "#/definitions/Transaction Parameters"
+        }
+      },
+      "example": {
+        "contractAddress": "00000000000000000000000000000000deadbeef",
+        "args": {
+          "age": 52,
+          "user": "Bob"
+        },
+        "contractName": "HoroscopeApp",
+        "methodName": "getHoroscope",
+        "value": "1000000000"
+      },
+      "type": "object"
+    },
+    "GetContractResponse": {
+      "description": "Response to Get Contracts endpoint",
+      "additionalProperties": {
+        "items": {
+          "$ref": "#/definitions/Address Created At"
+        },
+        "type": "array"
+      },
+      "example": {
+        "MySampleContract": [
+          {
+            "createdAt": 1976,
+            "address": "00000000000000000000000000000000deadbeef"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "Address Created At": {
+      "description": "Address and its creation time (POSIX)",
+      "required": [
+        "at"
+      ],
+      "properties": {
+        "at": {
+          "maximum": 9223372036854775807,
+          "format": "int64",
+          "minimum": -9223372036854775808,
+          "type": "integer"
+        }
+      },
+      "example": {
+        "createdAt": 1494448021000,
+        "address": "00000000000000000000000000000000deadbeef"
+      },
+      "items": [
+        {
+          "$ref": "#/definitions/Contract Name, \"Latest\", Or Address"
+        }
+      ],
+      "type": "array"
+    },
+    "Function Name": {
+      "example": "fireMissiles",
+      "type": "string"
+    },
+    "Get Contract States Mapping Response": {
+      "description": "Response to the Get Cotnracts State Mapping route",
+      "example": {
+        "willRain": false
+      },
+      "type": "string"
+    },
+    "Enum Value": {
+      "example": "Red",
+      "type": "string"
+    },
+    "Post Compile Response": {
+      "required": [
+        "contractName",
+        "codeHash"
+      ],
+      "properties": {
+        "contractName": {
+          "type": "string"
+        },
+        "codeHash": {
+          "$ref": "#/definitions/Keccak256 hash, 32 byte hex encoded string"
+        }
+      },
+      "example": {
+        "contractName": "MySampleContract",
+        "codeHash": "2c2831bc66a7b43faba30136666c705d6f47b78b9a25e51f823f142a19853212"
+      },
+      "type": "object"
+    },
+    "Post Compile Request": {
+      "required": [
+        "source"
+      ],
+      "properties": {
+        "searchable": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "contractName": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "contractName": "MySampleContract",
+        "searchable": [
+          "searchable",
+          "tags"
+        ],
+        "source": "contract MySampleContract { ...} "
+      },
+      "type": "object"
+    },
+    "Search Contract State": {
+      "required": [
+        "address",
+        "state"
+      ],
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/Address"
+        },
+        "state": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Solidity Value"
+          },
+          "type": "object"
+        }
+      },
+      "example": {
+        "state": {
+          "val": false
+        },
+        "address": "00000000000000000000000000000000deadbeef"
+      },
+      "type": "object"
+    }
+  }
+}

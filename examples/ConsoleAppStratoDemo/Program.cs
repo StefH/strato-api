@@ -57,10 +57,12 @@ namespace ConsoleAppStratoDemo
             var contractRequest = new PostUsersContractRequest
             {
                 Password = "stefstef",
-                Contract = "Test02",
+                // Contract = "Test02",
                 Src = "contract Test02 { uint storedData; function set(uint x) { storedData = x; } function get() returns (uint retVal) { return storedData; } }"
             };
             var create = await client.UsersContractPostAsync("stef-01", "eb872895e2729a3c75109322c82eee662ec934b4", contractRequest);
+
+            var res = await client.TransactionResultsGetAsync(create.Hash);
 
             int y = 99;
         }
