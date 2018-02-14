@@ -58,7 +58,7 @@ namespace ConsoleAppStratoDemo
             var search = await client.ContractsSearchGetAsync("MyFirstContract");
 
             string name = "Test" + DateTime.UtcNow.Ticks;
-            var contractRequest = new PostUsersContractRequest
+            var contractRequest = new PostUserContractRequest
             {
                 Password = "stefstef",
                 Contract = name,

@@ -104,6 +104,57 @@ namespace Strato.Bloc.Client.Models
         public IEnumerable<string> Modifiers { get; set; }
     }
 
+    public class MethodCall
+    {
+        public string ContractName { get; set; }
+
+        public string ContractAddress { get; set; }
+
+        public string MethodName { get; set; }
+
+        public IDictionary<string, string> Args { get; set; }
+
+        public double Value { get; set; }
+
+        public TransactionParameters TxParams { get; set; }
+    }
+
+    public class PostCompileRequest
+    {
+        public IEnumerable<string> Searchable { get; set; }
+
+        public string ContractName { get; set; }
+
+        public string Source { get; set; }
+    }
+
+    public class PostCompileResponse
+    {
+        public string ContractName { get; set; }
+
+        public string CodeHash { get; set; }
+    }
+
+    public class PostMethodListRequest
+    {
+        public string Password { get; set; }
+
+        public bool Resolve { get; set; }
+
+        public IEnumerable<MethodCall> Txs { get; set; }
+    }
+
+    public class PostSendParameters
+    {
+        public string ToAddress { get; set; }
+
+        public double Value { get; set; }
+
+        public string Password { get; set; }
+
+        public TransactionParameters TxParams { get; set; }
+    }
+
     public class PostTransaction
     {
         public string Hash { get; set; }
@@ -129,11 +180,57 @@ namespace Strato.Bloc.Client.Models
         public double Nonce { get; set; }
     }
 
+    public class PostUserContractRequest
+    {
+        public string Src { get; set; }
+
+        public string Password { get; set; }
+
+        public string Contract { get; set; }
+
+        public IDictionary<string, string> Args { get; set; }
+
+        public TransactionParameters TxParams { get; set; }
+
+        public string Value { get; set; }
+    }
+
+    public class PostUsersContractMethodRequest
+    {
+        public string Password { get; set; }
+
+        public string Method { get; set; }
+
+        public IDictionary<string, string> Args { get; set; }
+
+        public string Value { get; set; }
+
+        public TransactionParameters TxParams { get; set; }
+    }
+
+    public class PostUsersSendListRequest
+    {
+        public string Password { get; set; }
+
+        public bool Resolve { get; set; }
+
+        public IEnumerable<SendTransaction> Txs { get; set; }
+    }
+
     public class SearchContractState
     {
         public string Address { get; set; }
 
         public IDictionary<string, string> State { get; set; }
+    }
+
+    public class SendTransaction
+    {
+        public string ToAddress { get; set; }
+
+        public double Value { get; set; }
+
+        public TransactionParameters TxParams { get; set; }
     }
 
     public class SolidityType
