@@ -97,9 +97,25 @@ namespace Strato.Client.Models
         public int Bytes { get; set; }
     }
 
+    public class ExtabiRequest : Dictionary<string, string>
+    {
+        public ExtabiRequest(string src)
+        {
+            Add("src", src);
+        }
+    }
+
     public class ExtabiResponse
     {
         public IDictionary<string, XabiSchema> Src { get; set; }
+    }
+
+    public class FaucetRequest : Dictionary<string, string>
+    {
+        public FaucetRequest(string address)
+        {
+            Add("address", address);
+        }
     }
 
     public class FieldType
@@ -161,6 +177,11 @@ namespace Strato.Client.Models
         public string V { get; set; }
 
         public double Nonce { get; set; }
+    }
+
+    public class SolcRequest
+    {
+        public string Src { get; set; }
     }
 
     public class SolcResponse
