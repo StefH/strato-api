@@ -23,7 +23,7 @@ namespace Strato.Bloc.Client.Api
         Task<IEnumerable<string>> ContractsSearchGetAsync([Path] string contractname);
 
         [Post("users/{user}/{address}/contract")]
-        Task<BlocTransactionResult> UsersContractPostAsync([Path] string user, [Path] string address, [Body] PostUsersContractRequest request);
+        Task<BlocTransactionResult> UserContractPostAsync([Path] string user, [Path] string address, [Body] PostUserContractRequest request);
 
         [Post("users/{user}/{userAddress}/contract/{contractName}/{contractAddress}/call")]
         Task<BlocTransactionResult> UsersContractMethodCallPostAsync([Path] string user, [Path] string userAddress, [Path] string contractName, [Path] string contractAddress, [Body] PostUsersContractMethodRequest request);
