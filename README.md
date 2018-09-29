@@ -21,7 +21,7 @@ The following frameworks are supported:
 
 ### Usage example for Strato Client
 
-``` charp
+``` c#
 var client = RestClient.For<IStratoApi>("http://stratodev.blockapps.net/strato-api/eth/v1.2/");
 
 var transactions = await client.TransactionsGetAsync("e1fd0d4a52b75a694de8b55528ad48e2e2cf7859");
@@ -31,7 +31,7 @@ var transactions = await client.TransactionsGetAsync("e1fd0d4a52b75a694de8b55528
 
 ### Usage example for Strato Bloc Client
 
-``` charp
+``` c#
 var client = RestClient.For<IStratoBlocApi>("http://stratodev.blockapps.net/bloc/v2.2/");
 
 var users = await client.UsersGetAsync();

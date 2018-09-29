@@ -13,25 +13,41 @@ namespace Strato.Client.Models
         public string BinRuntime { get; set; }
     }
 
+    /// <summary>
+    /// {
+    ///     "contractRoot": "56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+    ///     "next": "/eth/v1.2/account?address=997b582e5e85afd141f4bce1cdcf57c1791a81b7&index=278",
+    ///     "kind": "AddressStateRef",
+    ///     "balance": "12000000000000000000000",
+    ///     "address": "997b582e5e85afd141f4bce1cdcf57c1791a81b7",
+    ///     "latestBlockNum": 438316,
+    ///     "codeHash": "c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+    ///     "code": "",
+    ///     "source": "",
+    ///     "nonce": 0
+    /// }
+    /// </summary>
     public class Account
     {
-        public string Address { get; set; }
+        public string ContractRoot { get; set; }
 
-        public int Nonce { get; set; }
+        public string Next { get; set; }
 
         public string Kind { get; set; }
 
         public double Balance { get; set; }
 
-        public string ContractRoot { get; set; }
+        public string Address { get; set; }
 
-        public string Code { get; set; }
+        public long LatestBlockNum { get; set; }
 
         public string CodeHash { get; set; }
 
-        public double LatestBlockNum { get; set; }
+        public string Code { get; set; }
 
         public string Source { get; set; }
+
+        public int Nonce { get; set; }
     }
 
     public class BatchTransactionResult

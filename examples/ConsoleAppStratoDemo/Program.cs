@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using RestEase;
 using Strato.Bloc.Client.Api;
-using Strato.Bloc.Client.Models;
 using Strato.Client.Api;
 using Strato.Client.Models;
 
@@ -18,42 +16,53 @@ namespace ConsoleAppStratoDemo
             TestStratoApi().Wait(60000);
 
             TestStratoBlocApi().Wait(60000);
-
-            int y = 0;
         }
 
         private static async Task TestStratoApi()
         {
             var client = RestClient.For<IStratoApi>("http://stratodev.blockapps.net/strato-api/eth/v1.2/");
 
-            var stefTests = await client.AccountsGetAsync("997b582e5e85afd141f4bce1cdcf57c1791a81b7");
+            var accounts = await client.AccountsGetAsync("e1fd0d4a52b75a694de8b55528ad48e2e2cf7859");
+            Console.WriteLine("AccountsGetAsync = " + JsonConvert.SerializeObject(accounts, Formatting.Indented));
 
-            string f = await client.FaucetPostAsync(new FaucetRequest("997b582e5e85afd141f4bce1cdcf57c1791a81b7"));
+            var blocs = await client.BlocksGetAsync(28971);
+            Console.WriteLine("BlocksGetAsync = " + JsonConvert.SerializeObject(blocs, Formatting.Indented));
+
+            var last = await client.BlocksLastGetAsync(2);
+            Console.WriteLine("BlocksLastGetAsync = " + JsonConvert.SerializeObject(last, Formatting.Indented));
+
+            var trans = await client.TransactionsGetAsync("e1fd0d4a52b75a694de8b55528ad48e2e2cf7859");
+            Console.WriteLine("TransactionsGetAsync = " + JsonConvert.SerializeObject(trans, Formatting.Indented));
+
+            var lastTrans = await client.TransactionLastGetAsync(27143);
+            Console.WriteLine("TransactionLastGetAsync = " + JsonConvert.SerializeObject(lastTrans.FirstOrDefault(), Formatting.Indented));
+
+            var transResult = await client.TransactionResultsHashGetAsync("883eee9f2223dfc125c31dbd937b68278a7a8251d54f85b8c1b2c834ce8c9b34");
+            Console.WriteLine("TransactionResultsHashGetAsync = " + JsonConvert.SerializeObject(transResult, Formatting.Indented));
+
+            var stats1 = await client.StatsDifficultyGetAsync();
+            Console.WriteLine("StatsDifficultyGetAsync = " + JsonConvert.SerializeObject(stats1, Formatting.Indented));
+
+            var stats2 = await client.StatsTotalTxGetAsync();
+            Console.WriteLine("StatsTotalTxGetAsync = " + JsonConvert.SerializeObject(stats2, Formatting.Indented));
+
+            string f = await client.FaucetPostAsync(new FaucetRequest("18cb93ccd293a7407e7747a635902fad390f43a7"));
+            Console.WriteLine("FaucetPostAsync = " + JsonConvert.SerializeObject(f, Formatting.Indented));
 
             // var solc = await client.SolcPostAsync(new SolcRequest { Src = "contract Test { uint storedData; function set(uint x) { storedData = x; } function get() returns (uint retVal) { return storedData; } }" });
 
-            var response = await client.ExtabiPostAsync(new ExtabiRequest("contract Test { uint storedData; function set(uint x) { storedData = x; } function get() returns (uint retVal) { return storedData; } }"));
 
-            var blocs = await client.BlocksGetAsync(418467);
+            //var storages = await client.StoragesGetAsync("eb49ed4bb6ed7f0a73189166fc9486fff65b1630");
 
-            var last = await client.BlocksLastGetAsync(2);
+            //var response = await client.ExtabiPostAsync(new ExtabiRequest("contract Test { uint storedData; function set(uint x) { storedData = x; } function get() returns (uint retVal) { return storedData; } }"));
 
-            var trans = await client.TransactionsGetAsync("e1fd0d4a52b75a694de8b55528ad48e2e2cf7859");
-
-            var stats1 = await client.StatsDifficultyGetAsync();
-
-            var stats2 = await client.StatsTotalTxGetAsync();
-
-            var stor = await client.StoragesGetAsync("eb49ed4bb6ed7f0a73189166fc9486fff65b1630");
-
-            int y = 99;
         }
 
         private static async Task TestStratoBlocApi()
         {
             var client = RestClient.For<IStratoBlocApi>("http://stratodev.blockapps.net/bloc/v2.2/");
 
-            var users1 = await client.UsersGetAsync();
+            // var users1 = await client.UsersGetAsync();
 
             //var users2 = await client.UsersGetAsync("stef-test");
             //string stefTestAddress = users2.FirstOrDefault();
